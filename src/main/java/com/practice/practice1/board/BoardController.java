@@ -10,5 +10,10 @@ public class BoardController {
 	public String getBoardListPage() {
 		return "/board/board_list";
 	}
+	
+	@GetMapping("/board_content")
+	public String getBoardContentPage() {
+		return "/board/board_content";
+	}
 
 }
