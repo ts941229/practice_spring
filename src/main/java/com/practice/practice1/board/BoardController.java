@@ -20,5 +20,10 @@ public class BoardController {
 	public String getBoardWritePage() {
 		return "/board/board_write";
 	}
+	
+	@GetMapping("/board_edit")
+	public String getBoardEditPage() {
+		return "/board/board_edit";
+	}
 
 }
