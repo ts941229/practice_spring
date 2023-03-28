@@ -3,13 +3,22 @@ package com.practice.practice1.board.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.practice.practice1.board.Board;
+import com.practice.practice1.board.BoardDTO;
+import com.practice.practice1.board.service.BoardService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/board")
+@RequiredArgsConstructor
 public class BoardController {
+	
+	private final BoardService boardService;
 	
 	@GetMapping("/boardList")
 	public String getBoardListPage() {
@@ -27,17 +36,19 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String writeBoard(@RequestParam("title") String title,
-										@RequestParam("author") String author, 
-										@RequestParam("content") String content, Model model) {
+	public String writeBoard(@ModelAttribute("board") BoardDTO boardDTO, Model model) {
 		
-//		System.out.println("title : " + title);
-//		System.out.println("author : " + author);
-//		System.out.println("content : " + content);
+		System.out.println("title : "+boardDTO.getTitle());
+		System.out.println("author : "+boardDTO.getAuthor());
+		System.out.println("content : "+boardDTO.getContent());
 		
-		model.addAttribute("title", title);
-		model.addAttribute("author", author);
-		model.addAttribute("content", content);
+		Board board = new Board();
+		
+		board.setTitle(boardDTO.getTitle());
+		board.setAuthor(boardDTO.getAuthor());
+		board.setContent(boardDTO.getContent());
+		
+		boardService.save(board);
 		
 		return "/board/board_list";
 	}

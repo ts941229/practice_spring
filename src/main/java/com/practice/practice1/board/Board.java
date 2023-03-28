@@ -2,13 +2,17 @@ package com.practice.practice1.board;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @SequenceGenerator(
 		name = "board_seq_generator",
 		sequenceName = "board_seq",
@@ -18,16 +22,13 @@ import lombok.Getter;
 public class Board {
 	
 	@Id
-	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_generator")
 	private long id;
 	
-	@Column(name = "title")
 	private String title;
 	
-	@Column(name = "author")
 	private String author;
 	
-	@Column(name = "content")
 	private String content;
 
 }
