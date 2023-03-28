@@ -1,6 +1,5 @@
 package com.practice.practice1.board;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,5 +29,7 @@ public class Board {
 	private String author;
 	
 	private String content;
+	
+	private String board_date;
 
 }

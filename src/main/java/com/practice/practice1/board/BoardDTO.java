@@ -11,5 +11,6 @@ public class BoardDTO {
 	private String title;
 	private String author;
 	private String content;
+	private String board_date;
 	
 }
