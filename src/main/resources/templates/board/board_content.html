@@ -96,7 +96,12 @@
 		
 		<span>
 			<button onclick="location.href='/board/boardEdit';" th:onclick="|location.href='@{/board/boardEdit/{id}(id=${board.id})}'|">수정</button>
-			<button onclick="location.href='/board/boardDelete';">삭제</button>
+			<!-- <button onclick="location.href='/board/boardDelete';" th:onclick="|location.href='@{/board/delete/{id}(id=${board.id})}'|">삭제</button> -->
+			<form id="delete_form" action="#" action="/board/${board.id}/delete" method="post" th:method="delete">
+			    <input type="hidden" name="_method" value="delete"/>
+			</form>
+		    <button onclick="if (confirm('정말로 삭제하시겠습니까?')) document.getElementById('delete_form').submit();">삭제</button>
+			
 		</span>
 		
 	</th:block>

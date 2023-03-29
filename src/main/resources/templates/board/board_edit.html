@@ -63,7 +63,7 @@
 	}
 </style>
 <body>
-	<form action="/board/edit" method="post" th:object="${board}">
+	<form action="/board/edit" method="post" th:object="${board}" th:method="put">
 		<input type="hidden" name="id" id="id" th:value="${board.id}">
 		<label for="title">제목</label>
 		<input type="text" name="title" id="title" value="게시글 제목" th:value="${board.title}" required>

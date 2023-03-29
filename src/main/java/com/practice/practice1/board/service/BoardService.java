@@ -28,4 +28,8 @@ public class BoardService {
 		return boardRepository.findById(board_seq);
 	}
 	
+	public void delete(Board board) {
+		boardRepository.delete(board);
+	}
+	
 }
