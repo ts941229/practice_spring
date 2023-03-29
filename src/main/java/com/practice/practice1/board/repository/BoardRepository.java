@@ -10,4 +10,6 @@ import com.practice.practice1.board.Board;
 public interface BoardRepository extends JpaRepository<Board, Long>{
 
 	public Optional<Board> findById(@Param("board_seq") Long board_seq);
+	
+	
 }

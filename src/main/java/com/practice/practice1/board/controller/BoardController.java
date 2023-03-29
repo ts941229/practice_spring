@@ -70,9 +70,22 @@ public class BoardController {
 		return "redirect:/board/boardList";
 	}
 	
-	@GetMapping("/boardEdit")
-	public String getBoardEditPage() {
+	@GetMapping("/boardEdit/{board_id}")
+	public String getBoardEditPage(@PathVariable("board_id") Long board_id, Model model) {
+		
+		model.addAttribute("board", boardService.findById(board_id).get());
+		
 		return "/board/board_edit";
 	}
-
+	
+	@PostMapping("/edit")
+	public String editBoard(@ModelAttribute("board") Board board) {
+		
+		boardService.save(board);
+		
+		return "redirect:/board/boardList";
+	}
+	
+	
+	
 }
