@@ -3,6 +3,8 @@ package com.practice.practice1.board.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.practice.practice1.board.Board;
@@ -20,8 +22,8 @@ public class BoardService {
 		boardRepository.save(board);
 	}
 	
-	public List<Board> findAll() {
-		return boardRepository.findAll();
+	public Page<Board> findAll(Pageable pageable) {
+		return boardRepository.findAll(pageable);
 	}
 	
 	public Optional<Board> findById(Long board_seq) {

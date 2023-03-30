@@ -2,9 +2,12 @@ package com.practice.practice1.board.controller;
 
 import java.util.Date;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,9 +30,16 @@ public class BoardController {
 	private final BoardService boardService;
 	
 	@GetMapping("/boardList")
-	public String getBoardListPage(Model model) {
+	public String getBoardListPage(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.DESC) Pageable pageable) {
 		
-		model.addAttribute("boardList", boardService.findAll());
+		Page<Board> boardList = boardService.findAll(pageable);
+		
+		int totalPage = boardList.getTotalPages();
+		System.out.println("totalPage : "+totalPage);
+
+		
+		
+		model.addAttribute("boardList", boardList);
 		
 //		for(Board board : boardService.findAll()) {
 //			System.out.println("title : "+board.getTitle());
