@@ -31,16 +31,16 @@ public class BoardController {
 	private final BoardService boardService;
 	
 	@GetMapping("/boardList")
-	public String getBoardListPage(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.DESC) Pageable pageable) {
+	public String getBoardListPage(Model model, @PageableDefault(page = 0, size = 5, sort = "id", direction = Direction.DESC) Pageable pageable) {
 		
 		Page<Board> boardList = boardService.findAll(pageable);
 		
-		int totalPage = boardList.getTotalPages();
-		System.out.println("totalPage : "+totalPage);
-
-		
+		int startPage = Math.max(boardList.getPageable().getPageNumber() - 4, 0);
+		int endPage = Math.min(boardList.getPageable().getPageNumber() + 4, boardList.getTotalPages());
 		
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		
 //		for(Board board : boardService.findAll()) {
 //			System.out.println("title : "+board.getTitle());
