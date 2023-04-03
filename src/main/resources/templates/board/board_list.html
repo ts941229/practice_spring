@@ -82,11 +82,15 @@
 	
 	<!-- 페이지네이션 -->
 	<div class="pagination">
-		<a href="#" class="prev">[이전]</a>
+		<a href="#" class="prev" th:if="${startPage}!=1"
+											  th:href="@{/board/boardList?page={prev}(prev=${prev-1})}">[이전]</a>
 		
-		<a href="#" class="page" th:each="i : ${#numbers.sequence(startPage, endPage)}" th:text="|[${i+1}]|" th:href="@{/board/boardList?page={i}(i=${i+1})}">[1]</a>
+		<a href="#" class="page" th:each="i : ${#numbers.sequence(startPage, endPage)}"
+											   th:text="|[${i}]|"
+											   th:href="@{/board/boardList?page={i}(i=${i-1})}"
+											   th:style="${i == nowPage? 'font-weight: bold; color: black;' : '' }">[1]</a> 
 		
-		<a href="#" class="next">[다음]</a>
+		<a href="#" class="next" th:if="${endPage<boardList.totalPages}" th:href="@{/board/boardList?page={next}(next=${next-1})}">[다음]</a>
 	</div>
 	
 	<span>

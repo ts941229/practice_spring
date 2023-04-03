@@ -35,18 +35,24 @@ public class BoardController {
 		
 		Page<Board> boardList = boardService.findAll(pageable);
 		
-		int startPage = Math.max(boardList.getPageable().getPageNumber() - 4, 0);
-		int endPage = Math.min(boardList.getPageable().getPageNumber() + 4, boardList.getTotalPages());
+		int pageSize = 5;
+		int nowPage = boardList.getPageable().getPageNumber() + 1;
+		// 시작페이지 : ((현재 페이지 - 1) / 페이지 사이즈) * 페이지 사이즈 + 1 
+		int startPage = Math.max(((nowPage - 1) / pageSize) * pageSize + 1, 0);
+		// 끝페이지 : (시작 페이지 + 페이지 사이즈 - 1)
+		int endPage = Math.min(startPage + pageSize - 1, boardList.getTotalPages());
+		int prev = startPage-pageSize;
+		int next = startPage+pageSize;
 		
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("prev", prev);
+		model.addAttribute("next", next);
 		
-//		for(Board board : boardService.findAll()) {
-//			System.out.println("title : "+board.getTitle());
-//			System.out.println("author : "+board.getAuthor());
-//			System.out.println("content : "+board.getContent());
-//		}
+		System.out.println("totalElements : "+boardList.getTotalElements());
+		System.out.println("totalPages : "+boardList.getTotalPages());
 		
 		return "/board/board_list";
 	}
