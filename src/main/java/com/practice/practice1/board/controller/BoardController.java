@@ -31,7 +31,7 @@ public class BoardController {
 	private final BoardService boardService;
 	
 	@GetMapping("/boardList")
-	public String getBoardListPage(Model model, @PageableDefault(page = 0, size = 5, sort = "id", direction = Direction.DESC) Pageable pageable) {
+	public String getBoardListPage(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.DESC) Pageable pageable) {
 		
 		Page<Board> boardList = boardService.findAll(pageable);
 		
@@ -50,9 +50,6 @@ public class BoardController {
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("prev", prev);
 		model.addAttribute("next", next);
-		
-		System.out.println("totalElements : "+boardList.getTotalElements());
-		System.out.println("totalPages : "+boardList.getTotalPages());
 		
 		return "/board/board_list";
 	}
