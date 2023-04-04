@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.practice.practice1.board.Board;
 import com.practice.practice1.board.BoardDTO;
@@ -52,6 +54,12 @@ public class BoardController {
 		model.addAttribute("next", next);
 		
 		return "/board/board_list";
+	}
+	
+	@GetMapping("/boardSearch")
+	public String boardSearch(@RequestParam("board_search") String search, Model model) {
+		System.out.println(search);
+		return "redirect:/board/boardList";
 	}
 	
 	@GetMapping("/boardContent/{board_seq}")

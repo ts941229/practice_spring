@@ -37,10 +37,17 @@
 	}
 	
 </style>
-<body>
+<body class="container mt-3">
 	<h1>게시판 리스트</h1>
 	
 	<h4>게시글 수 : <span th:text="${boardList.totalElements}"></span> 개</h4>
+	
+	<form action="/board/boardSearch">
+		<div class="input-group mb-3 w-50 float-end">
+	  		<input type="text" class="form-control" name="board_search" id="board_search" placeholder="게시물을 검색하세요">
+	  		<button class="btn btn-primary" type="submit" id="button-addon2">검색</button>
+		</div>
+	</form>
 	
 	<table>
 		<thead>
@@ -75,38 +82,37 @@
 				</tr>
 			</th:block>
 			
-			
-			
 		</tbody>
 	</table>
 	
 	<br>
 	
+	<div>
+		<button class="btn btn-primary float-end" onclick="location.href='/board/boardWrite';">글 작성</button>
+	</div>
+	
 	<!-- 페이지네이션 -->
-	<nav aria-label="Page navigation example">
-  		<ul class="pagination justify-content-center">
-  			
-    		<li class="page-item" th:classappend="${startPage!=1 ? '' : 'disabled'}">
-      			<a class="page-link" 	th:href="@{/board/boardList?page={prev}(prev=${prev-1})}">Previous</a>
-    		</li>
-    		
-    		<li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}"
-    										 th:classappend="${nowPage==i ? 'active' : ''}">
-    			<a class="page-link" href="#" 
-    											th:text="${i}"
-    											th:href="@{/board/boardList?page={i}(i=${i-1})}">1</a>
-    		</li>
-    		
-    		<li class="page-item" th:classappend="${endPage<boardList.totalPages ? '' : 'disabled'}">
-      			<a class="page-link" href="#" th:href="@{/board/boardList?page={next}(next=${next-1})}">Next</a>
-    		</li>
-  		</ul>
-	</nav>
-	
-	
-	<span>
-		<button class="btn btn-primary" onclick="location.href='/board/boardWrite';">글 작성</button>
-	</span>
+	<div style="clear: both">
+		<nav aria-label="Page navigation example">
+	  		<ul class="pagination justify-content-center">
+	  			
+	    		<li class="page-item" th:classappend="${startPage!=1 ? '' : 'disabled'}">
+	      			<a class="page-link" 	th:href="@{/board/boardList?page={prev}(prev=${prev-1})}">Previous</a>
+	    		</li>
+	    		
+	    		<li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}"
+	    										 th:classappend="${nowPage==i ? 'active' : ''}">
+	    			<a class="page-link" href="#" 
+	    											th:text="${i}"
+	    											th:href="@{/board/boardList?page={i}(i=${i-1})}">1</a>
+	    		</li>
+	    		
+	    		<li class="page-item" th:classappend="${endPage<boardList.totalPages ? '' : 'disabled'}">
+	      			<a class="page-link" href="#" th:href="@{/board/boardList?page={next}(next=${next-1})}">Next</a>
+	    		</li>
+	  		</ul>
+		</nav>
+	</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
