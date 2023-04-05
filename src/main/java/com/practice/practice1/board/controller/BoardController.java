@@ -46,6 +46,9 @@ public class BoardController {
 		int prev = startPage-pageSize;
 		int next = startPage+pageSize;
 		
+		// 데이터가 없을 때
+		if(endPage==0) {endPage = 1;}
+		
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
@@ -69,6 +72,9 @@ public class BoardController {
 		int endPage = Math.min(startPage + pageSize - 1, searchList.getTotalPages());
 		int prev = startPage-pageSize;
 		int next = startPage+pageSize;
+		
+		// 데이터가 없을 때
+		if(endPage==0) {endPage = 1;}
 		
 		model.addAttribute("searchList", searchList);
 		model.addAttribute("keyword", keyword);
