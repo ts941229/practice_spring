@@ -26,6 +26,10 @@ public class BoardService {
 		return boardRepository.findAll(pageable);
 	}
 	
+	public Page<Board> findByTitleContaining(String keyword, Pageable pageable){
+		return boardRepository.findByTitleContaining(keyword, pageable);
+	}
+	
 	public Optional<Board> findById(Long board_seq) {
 		return boardRepository.findById(board_seq);
 	}

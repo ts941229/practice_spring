@@ -57,9 +57,28 @@ public class BoardController {
 	}
 	
 	@GetMapping("/boardSearch")
-	public String boardSearch(@RequestParam("board_search") String search, Model model) {
-		System.out.println(search);
-		return "redirect:/board/boardList";
+	public String boardSearch(@RequestParam("board_search") String keyword, Model model, @PageableDefault(sort = "id", size = 5, direction = Direction.DESC) Pageable pageable) {
+		
+		Page<Board> searchList = boardService.findByTitleContaining(keyword, pageable);
+	
+		int pageSize = 5;
+		int nowPage = searchList.getPageable().getPageNumber() + 1;
+		// 시작페이지 : ((현재 페이지 - 1) / 페이지 사이즈) * 페이지 사이즈 + 1 
+		int startPage = Math.max(((nowPage - 1) / pageSize) * pageSize + 1, 0);
+		// 끝페이지 : (시작 페이지 + 페이지 사이즈 - 1)
+		int endPage = Math.min(startPage + pageSize - 1, searchList.getTotalPages());
+		int prev = startPage-pageSize;
+		int next = startPage+pageSize;
+		
+		model.addAttribute("searchList", searchList);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("prev", prev);
+		model.addAttribute("next", next);
+		
+		return "/board/board_search";
 	}
 	
 	@GetMapping("/boardContent/{board_seq}")
