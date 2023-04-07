@@ -1,6 +1,5 @@
 package com.practice.practice1.board.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -30,6 +29,18 @@ public class BoardService {
 		return boardRepository.findByTitleContaining(keyword, pageable);
 	}
 	
+	public Page<Board> findByTitleContainingOrContentContaining(String keyword, Pageable pageable) {
+		return boardRepository.findByTitleContainingOrContentContaining(keyword, pageable);
+	}
+	
+	public Page<Board> findByContentContaining(String keyword, Pageable pageable) {
+		return boardRepository.findByContentContaining(keyword, pageable);
+	}
+	
+	public Page<Board> findByAuthorContaining(String keyword, Pageable pageable) {
+		return boardRepository.findByAuthorContaining(keyword, pageable);
+	}
+	
 	public Optional<Board> findById(Long board_seq) {
 		return boardRepository.findById(board_seq);
 	}
@@ -37,5 +48,6 @@ public class BoardService {
 	public void delete(Board board) {
 		boardRepository.delete(board);
 	}
+
 	
 }
