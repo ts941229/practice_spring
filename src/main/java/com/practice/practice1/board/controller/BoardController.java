@@ -60,10 +60,12 @@ public class BoardController {
 	}
 	
 	@GetMapping("/boardSearch")
-	public String boardSearch(@RequestParam("board_search") String keyword, Model model, @PageableDefault(sort = "id", size = 5, direction = Direction.DESC) Pageable pageable) {
+	public String boardSearch(@RequestParam("board_search") String keyword, @RequestParam("search_category") String search_category, Model model, @PageableDefault(sort = "id", size = 5, direction = Direction.DESC) Pageable pageable) {
 		
 		Page<Board> searchList = boardService.findByTitleContaining(keyword, pageable);
 	
+		System.out.println("serach_category : "+search_category);
+		
 		int pageSize = 5;
 		int nowPage = searchList.getPageable().getPageNumber() + 1;
 		// 시작페이지 : ((현재 페이지 - 1) / 페이지 사이즈) * 페이지 사이즈 + 1 

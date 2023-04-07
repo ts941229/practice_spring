@@ -42,9 +42,16 @@
 	
 	<h4>게시글 수 : <span th:text="${boardList.totalElements}"></span> 개</h4>
 	
+	
 	<form action="/board/boardSearch">
-		<div class="input-group mb-3 w-50 float-end">
-	  		<input type="text" class="form-control" name="board_search" id="board_search" placeholder="게시물을 검색하세요">
+		<div class="input-group mb-3 w-75 float-end">
+			<select class="form-select" id="search_category" name="search_category" aria-label="Default select example">
+			  	<option selected value="1">제목 + 내용</option>
+			  	<option value="2">제목</option>
+			  	<option value="3">내용</option>
+			  	<option value="4">작성자</option>
+			</select>
+	  		<input type="text" class="form-control w-50" name="board_search" id="board_search" placeholder="검색어를 입력하세요">
 	  		<button class="btn btn-primary" type="submit" id="button-addon2">검색</button>
 		</div>
 	</form>
@@ -59,19 +66,6 @@
 			</tr>
 		</thead>
 		<tbody>
-			<!-- <tr>
-				<td>1</td>
-				<td><a href="/board/boardContent">첫번째 글 제목</a></td>
-				<td>작성자1</td>
-				<td>2023-03-25</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td><a href="#">두번째 글 제목</a></td>
-				<td>작성자2</td>
-				<td>2023-03-26</td>
-			</tr> -->
-			
 			<!-- 추가적인 게시글 목록은 이곳에 추가합니다. -->
 			<th:block th:each="board : ${boardList}">
 				<tr>
