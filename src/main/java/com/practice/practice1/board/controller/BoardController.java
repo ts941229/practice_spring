@@ -90,6 +90,7 @@ public class BoardController {
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("prev", prev);
 		model.addAttribute("next", next);
+		model.addAttribute("search_category", search_category);
 		
 		return "/board/board_search";
 	}
