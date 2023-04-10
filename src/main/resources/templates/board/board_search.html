@@ -90,18 +90,18 @@
 	  		<ul class="pagination justify-content-center">
 	  			
 	    		<li class="page-item" th:classappend="${startPage!=1 ? '' : 'disabled'}">
-	      			<a class="page-link" 	th:href="@{/board/boardSearch?board_search={keyword}&page={prev}(keyword=${keyword}, prev=${prev-1})}">Previous</a>
+	      			<a class="page-link" 	th:href="@{/board/boardSearch?search_category={search_category}&board_search={keyword}&page={prev}(search_category=${search_category}, keyword=${keyword}, prev=${prev-1})}">Previous</a>
 	    		</li>
 	    		
 	    		<li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}"
 	    										 th:classappend="${nowPage==i ? 'active' : ''}">
 	    			<a class="page-link" href="#" 
 	    											th:text="${i}"
-	    											th:href="@{/board/boardSearch?board_search={keyword}&page={i}(keyword=${keyword}, i=${i-1})}">1</a>
+	    											th:href="@{/board/boardSearch?search_category={search_category}&board_search={keyword}&page={i}(search_category=${search_category}, keyword=${keyword}, i=${i-1})}">1</a>
 	    		</li>
 	    		
 	    		<li class="page-item" th:classappend="${endPage<searchList.totalPages ? '' : 'disabled'}">
-	      			<a class="page-link" href="#" th:href="@{/board/boardSearch?board_search={keyword}&page={next}(keyword=${keyword}, next=${next-1})}">Next</a>
+	      			<a class="page-link" href="#" th:href="@{/board/boardSearch?search_category={search_category}&board_search={keyword}&page={next}(search_category=${search_category}, keyword=${keyword}, next=${next-1})}">Next</a>
 	    		</li>
 	  		</ul>
 		</nav>
