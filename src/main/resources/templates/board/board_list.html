@@ -43,7 +43,7 @@
 	<h4>게시글 수 : <span th:text="${boardList.totalElements}"></span> 개</h4>
 	
 	
-	<form action="/board/boardSearch">
+	<form action="/board/board-search">
 		<div class="input-group mb-3 w-75 float-end">
 			<select class="form-select" id="search_category" name="search_category" aria-label="Default select example">
 			  	<option selected value="1">제목 + 내용</option>
@@ -70,7 +70,7 @@
 			<th:block th:each="board : ${boardList}">
 				<tr>
 					<td th:text="${board.id}">2</td>
-					<td><a th:text="${board.title}" th:href="@{/board/boardContent/{id}(id=${board.id})}" href="#">두번째 글 제목</a></td>
+					<td><a th:text="${board.title}" th:href="@{/board/board-content/{id}(id=${board.id})}" href="#">두번째 글 제목</a></td>
 					<td th:text="${board.author}">작성자2</td>
 					<td th:text="${board.board_date}">2023-03-26</td>
 				</tr>
@@ -82,7 +82,7 @@
 	<br>
 	
 	<div>
-		<button class="btn btn-primary float-end" onclick="location.href='/board/boardWrite';">글 작성</button>
+		<button class="btn btn-primary float-end" onclick="location.href='/board/board-write';">글 작성</button>
 	</div>
 	
 	<!-- 페이지네이션 -->
@@ -91,18 +91,18 @@
 	  		<ul class="pagination justify-content-center">
 	  			
 	    		<li class="page-item" th:classappend="${startPage!=1 ? '' : 'disabled'}">
-	      			<a class="page-link" 	th:href="@{/board/boardList?page={prev}(prev=${prev-1})}">Previous</a>
+	      			<a class="page-link" 	th:href="@{/board/board-list?page={prev}(prev=${prev-1})}">Previous</a>
 	    		</li>
 	    		
 	    		<li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}"
 	    										 th:classappend="${nowPage==i ? 'active' : ''}">
 	    			<a class="page-link" href="#" 
 	    											th:text="${i}"
-	    											th:href="@{/board/boardList?page={i}(i=${i-1})}">1</a>
+	    											th:href="@{/board/board-list?page={i}(i=${i-1})}">1</a>
 	    		</li>
 	    		
 	    		<li class="page-item" th:classappend="${endPage<boardList.totalPages ? '' : 'disabled'}">
-	      			<a class="page-link" href="#" th:href="@{/board/boardList?page={next}(next=${next-1})}">Next</a>
+	      			<a class="page-link" href="#" th:href="@{/board/board-list?page={next}(next=${next-1})}">Next</a>
 	    		</li>
 	  		</ul>
 		</nav>

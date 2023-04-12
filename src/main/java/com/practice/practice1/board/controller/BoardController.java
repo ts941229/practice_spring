@@ -32,8 +32,8 @@ public class BoardController {
 	
 	private final BoardService boardService;
 	
-	@GetMapping("/boardList")
-	public String getBoardListPage(Model model, @PageableDefault(page = 0, size = 5, sort = "id", direction = Direction.DESC) Pageable pageable) {
+	@GetMapping("/board-list")
+	public String boardListForm(Model model, @PageableDefault(page = 0, size = 5, sort = "id", direction = Direction.DESC) Pageable pageable) {
 
 		Page<Board> boardList = boardService.findAll(pageable);
 		
@@ -59,8 +59,8 @@ public class BoardController {
 		return "/board/board_list";
 	}
 	
-	@GetMapping("/boardSearch")
-	public String boardSearch(@RequestParam("board_search") String keyword, @RequestParam("search_category") String search_category, Model model, @PageableDefault(sort = "id", size = 5, direction = Direction.DESC) Pageable pageable) {
+	@GetMapping("/board-search")
+	public String boardSearchForm(@RequestParam("board_search") String keyword, @RequestParam("search_category") String search_category, Model model, @PageableDefault(sort = "id", size = 5, direction = Direction.DESC) Pageable pageable) {
 		
 		Page<Board> searchList = null;
 	
@@ -95,15 +95,15 @@ public class BoardController {
 		return "/board/board_search";
 	}
 	
-	@GetMapping("/boardContent/{board_seq}")
-	public String getBoardContentPage(@PathVariable("board_seq") Long board_seq, Model model) {
+	@GetMapping("/board-content/{board_seq}")
+	public String boardContentForm(@PathVariable("board_seq") Long board_seq, Model model) {
 		
 		model.addAttribute("board", boardService.findById(board_seq).get());
 		
 		return "/board/board_content";
 	}
 	
-	@GetMapping("/boardWrite")
+	@GetMapping("/board-write")
 	public String getBoardWritePage() {
 		return "/board/board_write";
 	}
@@ -124,11 +124,11 @@ public class BoardController {
 		
 		boardService.save(board);
 		
-		return "redirect:/board/boardList";
+		return "redirect:/board/board-list";
 	}
 	
-	@GetMapping("/boardEdit/{board_id}")
-	public String getBoardEditPage(@PathVariable("board_id") Long board_id, Model model) {
+	@GetMapping("/board-edit/{board_id}")
+	public String boardEditForm(@PathVariable("board_id") Long board_id, Model model) {
 		
 		model.addAttribute("board", boardService.findById(board_id).get());
 		
@@ -140,7 +140,7 @@ public class BoardController {
 		
 		boardService.save(board);
 		
-		return "redirect:/board/boardList";
+		return "redirect:/board/board-list";
 	}
 	
 	@DeleteMapping("/delete/{id}")
@@ -148,7 +148,7 @@ public class BoardController {
 		
 		boardService.delete(boardService.findById(Id).get());
 		
-		return "redirect:/board/boardList";
+		return "redirect:/board/board-list";
 	}
 	
 	
