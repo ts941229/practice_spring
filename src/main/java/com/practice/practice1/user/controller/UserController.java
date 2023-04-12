@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 	
-	@GetMapping("/userRegist")
+	@GetMapping("/user-regist")
 	public String registForm() {
 		return "/user/user_regist";
 	}
 	
-	@GetMapping("/userLogin")
+	@GetMapping("/user-login")
 	public String loginForm() {
 		return "/user/user_login";
 	}
