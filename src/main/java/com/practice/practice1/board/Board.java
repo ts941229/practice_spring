@@ -1,5 +1,6 @@
 package com.practice.practice1.board;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,12 +25,17 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_generator")
 	private long id;
 	
+	@Column(nullable = false)
 	private String title;
 	
+	@Column(nullable = false, unique = true)
 	private String author;
-	
+
+	@Column(nullable = false)
 	private String content;
 	
-	private String board_date;
+	private String write_date;
+	
+	private String edit_date;
 
 }

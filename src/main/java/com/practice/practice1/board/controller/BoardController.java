@@ -116,7 +116,7 @@ public class BoardController {
 		board.setTitle(boardDTO.getTitle());
 		board.setAuthor(boardDTO.getAuthor());
 		board.setContent(boardDTO.getContent());
-		board.setBoard_date(Util.getInstance().DateFormat(new Date()));
+		board.setWrite_date(Util.getInstance().DateFormat(new Date()));
 		
 		boardService.save(board);
 		
