@@ -1,30 +1,30 @@
-package com.practice.practice1.user.controller;
+package com.practice.practice1.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.practice.practice1.user.service.UserService;
+import com.practice.practice1.member.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/member")
 @RequiredArgsConstructor
-public class UserController {
+public class MemberController {
 	
 	@Autowired
-	private final UserService userService;
+	private final MemberService memberService;
 	
-	@GetMapping("/user-regist")
+	@GetMapping("/member-regist")
 	public String registForm() {
-		return "/user/user_regist";
+		return "/member/member_regist";
 	}
 	
-	@GetMapping("/user-login")
+	@GetMapping("/member-login")
 	public String loginForm() {
-		return "/user/user_login";
+		return "/member/member_login";
 	}
 	
 }

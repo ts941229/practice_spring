@@ -1,4 +1,4 @@
-package com.practice.practice1.user;
+package com.practice.practice1.member;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,11 +11,11 @@ import lombok.Getter;
 
 @Getter
 @Entity
-@SequenceGenerator(name = "user_seq_generator", sequenceName = "user_seq", allocationSize = 1, initialValue = 1)
-public class User {
+@SequenceGenerator(name = "member_seq_generator", sequenceName = "member_seq", allocationSize = 1, initialValue = 1)
+public class Member {
 
 	@Id
-	@GeneratedValue(generator = "user_seq_generator", strategy = GenerationType.IDENTITY)
+	@GeneratedValue(generator = "member_seq_generator", strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(nullable = false, unique = true)

@@ -1,18 +1,18 @@
-package com.practice.practice1.user.service;
+package com.practice.practice1.member.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.practice.practice1.user.repository.UserRepository;
+import com.practice.practice1.member.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class MemberService {
 
 	@Autowired
-	private final UserRepository userRepository;
+	private final MemberRepository memberRepository;
 	
 	
 }

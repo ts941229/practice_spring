@@ -13,7 +13,6 @@ spring:
       ddl-auto: update
     properties:      
       show-sql: true
-      format_sql: true
 
     
       
