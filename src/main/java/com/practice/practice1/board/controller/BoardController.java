@@ -111,12 +111,12 @@ public class BoardController {
 	@PostMapping("/write")
 	public String writeBoard(@ModelAttribute("board") BoardDTO boardDTO, Model model) {
 		
-		Board board = new Board();
-		
-		board.setTitle(boardDTO.getTitle());
-		board.setAuthor(boardDTO.getAuthor());
-		board.setContent(boardDTO.getContent());
-		board.setWrite_date(Util.getInstance().DateFormat(new Date()));
+		Board board = Board.builder()	
+										.title(boardDTO.getTitle())
+										.author(boardDTO.getAuthor())
+										.content(boardDTO.getContent())
+										.write_date(Util.getInstance().dateFormat(new Date()))
+										.build();
 		
 		boardService.save(board);
 		
@@ -132,9 +132,18 @@ public class BoardController {
 	}
 	
 	@PutMapping("/edit")
-	public String editBoard(@ModelAttribute("board") Board board) {
+	public String editBoard(@ModelAttribute("board") BoardDTO boardDTO) {
 		
-		boardService.save(board);
+		Board edited_board = Board.builder()
+												.id(boardDTO.getId())
+												.title(boardDTO.getTitle())
+												.author(boardDTO.getAuthor())
+												.content(boardDTO.getContent())
+												.write_date(boardDTO.getWrite_date())
+												.edit_date(Util.getInstance().dateFormat(new Date()))
+												.build();
+		
+		boardService.save(edited_board);
 		
 		return "redirect:/board/board-list";
 	}

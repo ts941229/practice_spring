@@ -73,7 +73,7 @@
 		
 		<label for="content">내용</label>
 		<textarea name="content" id="content" th:text="${board.content}" required>게시글 내용</textarea>
-		<input type="hidden" name="board_date" id="board_date" th:value="${board.board_date}">
+		<input type="hidden" name="write_date" id="write_date" th:value="${board.write_date}">
 		
 		<input type="submit" value="수정">
 	</form>

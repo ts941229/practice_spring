@@ -18,7 +18,7 @@ public class Util {
 		return util;
 	}
 	
-	public String DateFormat(Date date) {
+	public String dateFormat(Date date) {
 		
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 		
