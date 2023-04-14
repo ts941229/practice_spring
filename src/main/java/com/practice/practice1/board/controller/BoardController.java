@@ -111,10 +111,6 @@ public class BoardController {
 	@PostMapping("/write")
 	public String writeBoard(@ModelAttribute("board") BoardDTO boardDTO, Model model) {
 		
-//		System.out.println("title : "+boardDTO.getTitle());
-//		System.out.println("author : "+boardDTO.getAuthor());
-//		System.out.println("content : "+boardDTO.getContent());
-		
 		Board board = new Board();
 		
 		board.setTitle(boardDTO.getTitle());
